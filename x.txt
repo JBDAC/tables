@@ -1,0 +1,16 @@
+Test Summary:
+Total Questions: 10
+Final Score: 100.00%
+Multiplication Table Learning Metrics:
+Table 1: 0.00% correct (0/0 questions)
+Table 2: 100.00% correct (1/1 questions)
+Table 3: 100.00% correct (1/1 questions)
+Table 4: 100.00% correct (1/1 questions)
+Table 5: 100.00% correct (2/2 questions)
+Table 6: 100.00% correct (2/2 questions)
+Table 7: 100.00% correct (1/1 questions)
+Table 8: 100.00% correct (1/1 questions)
+Table 9: 100.00% correct (1/1 questions)
+Table 10: 0.00% correct (0/0 questions)
+
+
