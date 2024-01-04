@@ -1,4 +1,4 @@
-This is a small toy to generate multiplication tables for kids. It can vary the difficulty, the number on entries etc. 
+This is a small toy to generate multiplication tables for kids. It can vary the difficulty, the number of entries etc. 
 It can print out the tables to a text file, or run an interactive quiz where the difficulty level will change, depending on their ability.
 Usage: python tables.py -h
 
