@@ -6,6 +6,8 @@ GREEN = '\033[92m'  # Green color
 RED = '\033[91m'   # Red color
 BOLD = '\033[1m'   # Bold text
 RESET = '\033[0m'  # Reset to default
+# Global variable to control color output
+USE_COLOR = False
 
 def print_cat(mood):
     cats = {
@@ -61,23 +63,41 @@ def quiz_multiplication_tables(range_limit, total_questions, metrics_file):
         
         #print(f"What is {question.split('=')[0]}?")
         #cprint(f"What is {question.split('=')[0]}?", attrs=['bold'])
-        print(f"What is {BOLD}{question.split('=')[0]}?{RESET}")
+        if USE_COLOR:
+            print(f"What is {BOLD}{question.split('=')[0]}?{RESET}")
+        else:
+            print(f"What is {question.split('=')[0]}?")
+
         user_answer = input("Your Answer: ")
         
         expected_answer = question.split('=')[1].strip()
         if user_answer == expected_answer:
-            print(f"{GREEN}Correct!\n{RESET}")
+            if USE_COLOR:
+                print(f"{GREEN}Correct!\n{RESET}")
+            else:
+                print(f"Correct!\n")
+
             correct_answers += 1
             score_details[str(number)]['correct'] += 1
         else:
-            print(f"{RED}Wrong! The correct answer is {BOLD}{expected_answer}{RESET}\n")
+            if USE_COLOR:
+                print(f"{RED}Wrong! The correct answer is {BOLD}{expected_answer}{RESET}\n")
+            else:
+                print(f"Wrong! The correct answer is {expected_answer}\n")
             learncounter = 0
             while(learncounter < 3):
                 learncounter +=1
-                print(f"\tagain - {BOLD}{question.split('=')[0]}?{RESET}")
+                if USE_COLOR:
+                    print(f"\tagain - {BOLD}{question.split('=')[0]}?{RESET}")
+                else:
+                    print(f"\tagain - {question.split('=')[0]}?")
                 user_answer = input("\tYour Answer: ")
                 if user_answer != expected_answer:
-                    print(f"{RED}\tWrong! It's {BOLD}{expected_answer}{RESET}\n")
+                    if USE_COLOR:
+                        print(f"{RED}\tWrong! It's {BOLD}{expected_answer}{RESET}\n")
+                    else:
+                        print(f"\tWrong! It's {expected_answer}\n")
+
                     learncounter =0
             print("\n")        
         # Update score details
@@ -129,9 +149,10 @@ if __name__ == "__main__":
     parser.add_argument('-n', '--total-questions', type=int, default=10, help='Total number of questions in the quiz')
     parser.add_argument('-m', '--metrics-file', default='score_details.txt', help='File to save learning metrics')
     parser.add_argument('-d', '--debug', type=int, default=0, help='Print extra info during the quiz')
+    parser.add_argument('-c', '--color', action='store_true', help='Enable colored output')
     
     args = parser.parse_args()
-    
+    USE_COLOR = args.color    
     if args.save:
         list_multiplication_tables_to_file(args.save, args.range, args.range)
         print(f"{args.range} multiplication tables (up to {args.range} entries each) saved to {args.save}")
