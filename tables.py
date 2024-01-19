@@ -1,7 +1,11 @@
 import random
 import argparse
-from termcolor import colored
-from termcolor import cprint
+
+# Define ANSI escape code for colors
+GREEN = '\033[92m'  # Green color
+RED = '\033[91m'   # Red color
+BOLD = '\033[1m'   # Bold text
+RESET = '\033[0m'  # Reset to default
 
 def print_cat(mood):
     cats = {
@@ -57,29 +61,25 @@ def quiz_multiplication_tables(range_limit, total_questions, metrics_file):
         
         #print(f"What is {question.split('=')[0]}?")
         #cprint(f"What is {question.split('=')[0]}?", attrs=['bold'])
-        print(f"What is \033[1m{question.split('=')[0]}?\033[0m")
+        print(f"What is {BOLD}{question.split('=')[0]}?{RESET}")
         user_answer = input("Your Answer: ")
         
         expected_answer = question.split('=')[1].strip()
         if user_answer == expected_answer:
-            #print("Correct!\n")
-            print(colored("Correct!\n", "green"))
+            print(f"{GREEN}Correct!\n{RESET}")
             correct_answers += 1
             score_details[str(number)]['correct'] += 1
         else:
-            #print(f"Wrong! The correct answer is {expected_answer}\n")
-            print(colored(f"Wrong! The correct answer is \033[1m{expected_answer}\033[0m\n", "red"))
+            print(f"{RED}Wrong! The correct answer is {BOLD}{expected_answer}{RESET}\n")
             learncounter = 0
             while(learncounter < 3):
                 learncounter +=1
-                print(f"\tagain - \033[1m{question.split('=')[0]}?\033[0m")
+                print(f"\tagain - {BOLD}{question.split('=')[0]}?{RESET}")
                 user_answer = input("\tYour Answer: ")
-                expected_answer = question.split('=')[1].strip()
                 if user_answer != expected_answer:
-                    print(colored(f"\tWrong! It's \033[1m{expected_answer}\033[0m\n", "red"))
+                    print(f"{RED}\tWrong! It's {BOLD}{expected_answer}{RESET}\n")
                     learncounter =0
-            print("\n")
-        
+            print("\n")        
         # Update score details
         score_details[str(number)]['questions_asked'] += 1
         
