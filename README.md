@@ -1,9 +1,9 @@
 This is a small toy to generate multiplication tables for kids. It can vary the difficulty, the number of entries etc. 
 It can print out the tables to a text file, or run an interactive quiz where the difficulty level will change, depending on their ability.
-Usage: python tables.py -h
 
+```
 usage: tables.py [-h] [-s SAVE] [-r RANGE] [-n TOTAL_QUESTIONS]
-                 [-m METRICS_FILE] [-d DEBUG]
+                 [-m METRICS_FILE] [-d DEBUG] [-c]
 
 Multiplication Table Quiz and Table Generator
 
@@ -19,4 +19,5 @@ options:
                         File to save learning metrics
   -d DEBUG, --debug DEBUG
                         Print extra info during the quiz
-                      
+  -c, --color           Enable colored output
+```
